@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 import uuid from 'uuid';
 
-// addExpense Action
+// addExpense Action Generator
 const addExpense = (
   {
-    description = '', 
+    description = '',
     note = '', 
     amount = 0, 
     createdAt = 0
@@ -20,13 +20,13 @@ const addExpense = (
   }
 });
 
-// removeExpense Action
+// removeExpense Action Generator
 const removeExpense = ({ id } = {}) => ({
   type: 'REMOVE_EXPENSE',
   id
 });
 
-// Edit Expense Action
+// Edit Expense Action Generator
 const editExpense = (id, updates) => ({
   type: 'EDIT_EXPENSE',
   id,
@@ -71,7 +71,7 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
       ]
 
     case 'REMOVE_EXPENSE':
-      return state.filter(({id}) => action.id !== id);
+      return state.filter(({ id }) => action.id !== id);
 
     case 'EDIT_EXPENSE':
       return state.map((expense) => {
@@ -160,8 +160,8 @@ store.subscribe(() => {
   console.log(visibleExpenses);
 });
 
-const expenseOne = store.dispatch(addExpense({description: 'Rent', amount: 100}));
-const expenseTwo = store.dispatch(addExpense({description: 'Coffee', amount: 300}));
+const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100, createdAt: 1000 }));
+const expenseTwo = store.dispatch(addExpense({ description: 'Coffee', amount: 300, createdAt: -1000 }));
 
 // store.dispatch(removeExpense({ id: expenseOne.expense.id }));
 // store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }));

@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import { addExpense } from './actions/expenses';
-import { setTextFilter } from './actions/filters';
-import getVisibleExpenses from './selectors/expenses';
+import getVisibleExpenses from './store/selectors/expenses';
+import { Provider } from 'react-redux';
+import { addExpense } from './store/actions/expenses';
+import { setTextFilter } from './store/actions/filters';
+
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 
@@ -25,4 +26,4 @@ const jsx = (
   </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(jsx, document.getElementById('root'));
